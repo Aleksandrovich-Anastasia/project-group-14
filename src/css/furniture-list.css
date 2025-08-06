@@ -1,4 +1,50 @@
-.test {
-  font-weight: 500;
-  background-color: red;
+.text-title {
+  margin-top: 16px;
+}
+
+.cards-list {
+  margin-top: 40px;
+  display: flex;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 0;
+  list-style: none;
+  /* justify-content: center; */
+}
+
+.card {
+  width: 159px;
+  height: 122px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.card-title {
+  position: relative;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 140%;
+  letter-spacing: 0.01em;
+  text-align: center;
+  padding: 0 16px;
+  color: #ffffff;
+  z-index: 2;
 }
