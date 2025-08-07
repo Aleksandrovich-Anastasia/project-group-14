@@ -12,13 +12,33 @@ const modal = document.querySelector('[data-modal]');
 
     renderGallery(furnitureItem.images);
     renderStars(furnitureItem.rating);
+     furnitureItem.colors = ['#c7c3bb', '#c7aa80', '#201a19']; // кольори з макету
     renderColors(furnitureItem.colors);
   }
 
   function renderGallery(images) {
     const gallery = modal.querySelector('.modal-gallery');
-    gallery.innerHTML = images.map(url => `<img src="${url}" alt="" />`).join('');
+    
+  if (!images || images.length === 0) {
+    gallery.innerHTML = '<p>Немає зображень</p>';
+    return;
   }
+
+  const mainImage = `<div class="main-image"><img src="${images[0]}" alt="Основне фото" /></div>`;
+
+  const thumbnails = images
+    .slice(1)
+    .map(
+      (url, i) =>
+        `<div class="thumb"><img src="${url}" alt="Фото ${i + 2}" /></div>`
+    )
+    .join('');
+
+  const thumbsRow = `<div class="thumbs-row">${thumbnails}</div>`;
+
+  gallery.innerHTML = mainImage + thumbsRow;
+}
+
 
   function renderStars(rating) {
     const container = modal.querySelector('.modal-rating');
@@ -27,11 +47,11 @@ const modal = document.querySelector('[data-modal]');
     let starsHtml = '';
 
     for (let i = 0; i < fullStars; i++) {
-      starsHtml += '<svg class="star"><use href="#icon-star"></use></svg>';
+      starsHtml += '<svg class="star"><use href="./img/sprite.svg#icon-star"></use></svg>';
     }
-    if (halfStar) starsHtml += '<svg class="star"><use href="#icon-star-half"></use></svg>';
+    if (halfStar) starsHtml += '<svg class="star"><use href="./img/sprite.svg#icon-star-half"></use></svg>';
     while (starsHtml.split('svg').length - 1 < 5) {
-      starsHtml += '<svg class="star"><use href="#icon-star-empty"></use></svg>';
+      starsHtml += '<svg class="star"><use href="./img/sprite.svg#icon-star-empty"></use></svg>';
     }
     container.innerHTML = starsHtml;
   }
@@ -57,8 +77,8 @@ const modal = document.querySelector('[data-modal]');
 
 
   modal.addEventListener('click', e => {
-    if (e.target.dataset.close || e.target === modal) closeModal();
-  });
+  if (e.target.closest('[data-close]') || e.target === modal) closeModal();
+});
 
   window.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeModal();
@@ -75,17 +95,19 @@ const modal = document.querySelector('[data-modal]');
 
   // Мокові дані для тесту
 const testFurniture = {
-  name: 'М’яке крісло',
-  category: 'Крісла',
-  price: 2500,
-  description: 'Зручне крісло з м’якою оббивкою та дерев’яними ніжками.',
-  sizes: '80x75x90 см',
+  name: 'Софа Oslo',
+  category: 'Дивани',
+  price: 9900,
+  description: 'Класичний диван з мякими подушками та високою спинкою, ідеальний для сімейного відпочинку. Оббивка з якісної зносостійкої тканини.',
+  sizes: 'Розмір: 80x75x90',
   rating: 4.5,
   colors: ['#a52a2a', '#4682b4', '#2e8b57'],
   images: [
-    'https://via.placeholder.com/150x100?text=Фото+1',
-    'https://via.placeholder.com/150x100?text=Фото+2',
-  ],
+  'https://picsum.photos/id/1018/600/400',  // основна
+  'https://picsum.photos/id/1015/150/100',  // мініатюра 1
+  'https://picsum.photos/id/1016/150/100',  // мініатюра 2
+],
+
 };
 
 document.querySelector('#test-open')?.addEventListener('click', () => {
