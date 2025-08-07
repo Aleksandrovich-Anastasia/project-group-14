@@ -9,7 +9,8 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  overflow-y: auto;
+  overflow-y: hidden;
+  box-sizing: border-box;
 }
 .is-hidden {
   display: none;
@@ -21,6 +22,9 @@
   min-width: 335px;
   width: 100%;
   position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 .modal-close {
   position: absolute;
@@ -151,7 +155,8 @@
   cursor: pointer;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.modal-order:hover {
+.modal-order:hover,
+.modal-order:focus {
   opacity: 0.5;
 }
 /* Styles for Tablet devices */
@@ -181,6 +186,9 @@
     padding: 64px;
     flex-direction: row;
     gap: 24px;
+  }
+  .modal-part-2 {
+    margin-left: auto;
   }
   .modal-title {
     margin-top: 0;

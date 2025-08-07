@@ -59,7 +59,7 @@ const modal = document.querySelector('[data-modal]');
   function renderColors(colors) {
   const container = modal.querySelector('.modal-colors');
   const title = `<p class="color-label-title">Колір</p>`;
-
+// чек бокс
   const labels = colors
     .map((color, i) => `
       <label class="color-label">
