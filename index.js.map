@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sources":[],"sourcesContent":[],"names":[],"mappings":""}
+{"version":3,"file":"index.js","sources":["../src/api.js"],"sourcesContent":["import axios from 'axios';\n\nexport const api = axios.create({\n  baseURL: 'https://furniture-store.b.goit.study/api',\n  timeout: 5000,\n});"],"names":["axios"],"mappings":"svBAEmBA,EAAM,OAAO,CAC9B,QAAS,2CACT,QAAS,GACX,CAAC"}
