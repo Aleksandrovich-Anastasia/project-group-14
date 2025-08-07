@@ -2,25 +2,38 @@
     transition: all 0.3s ease;
 }
 
+.accordion-button {
+    background-color: transparent;
+    color: inherit;
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: transparent !important;
+    color: inherit !important;
+    box-shadow: none !important;
+}
+
 @media screen and (max-width: 767px) {
     .container {
         padding-left: 16px;
         padding-right: 16px;
     }
 
-    .faq-title {
-        font-size: 22px;
-        margin-bottom: 24px;
-        text-align: center;
+    .text-center {
+        font-weight: 700;
+        font-size: 36px;
     }
 
     .accordion-button {
-        font-size: 15px;
+        font-weight: 700;
+        font-size: 16px;
         padding: 12px 16px;
     }
 
     .accordion-body {
-        font-size: 14px;
+        font-weight: 400;
+        font-size: 16px;
         padding: 0 16px 12px;
     }
 
@@ -31,26 +44,25 @@
     }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1439px) {
+@media screen and (min-width: 768px) {
     .container {
         max-width: 720px;
         margin: 0 auto;
         padding: 0 32px;
     }
 
-    .faq-title {
-        font-size: 28px;
-        margin-bottom: 32px;
-        text-align: center;
+    .text-center {
+        font-size: 48px;
     }
 
+
     .accordion-button {
-        font-size: 16px;
+        font-weight: 700;
+        font-size: 18px;
         padding: 16px;
     }
 
     .accordion-body {
-        font-size: 15px;
         padding: 0 16px 16px;
     }
 
@@ -68,18 +80,11 @@
         padding: 0 40px;
     }
 
-    .faq-title {
-        font-size: 32px;
-        margin-bottom: 40px;
-    }
-
     .accordion-button {
-        font-size: 18px;
         padding: 20px;
     }
 
     .accordion-body {
-        font-size: 16px;
         padding: 0 20px 20px;
     }
 
