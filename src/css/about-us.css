@@ -4,6 +4,9 @@
   max-width: 100%;
   height: auto;
 }
+img {
+  border-radius: 8px;
+}
 
 /*--------------------------section-about-us--------------------------*/
 .about-us {
