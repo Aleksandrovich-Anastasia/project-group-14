@@ -1,3 +1,7 @@
+.furniture-list {
+  margin: auto;
+}
+
 .text-title {
   margin-top: 16px;
 }
@@ -121,6 +125,10 @@
   margin: 32px auto;
 }
 
+.color-label-group {
+  margin-top: 8px;
+}
+
 /* Styles for Tablet devices */
 @media only screen and (min-width: 768px) {
   .card {
@@ -155,7 +163,7 @@
     width: 166px;
   }
 
-  .prise-image {
+  .price-image {
     width: 310px;
     height: 256px;
   }
