@@ -1,9 +1,30 @@
-<div class="furniture-list">
-  <div class="container">Furniture List Section</div>
-</div>
+<div class="furniture-detail">
+  <div class="modal-backdrop is-hidden" data-modal>
+    <div class="container">
+      <div class="modal-window">
+        <button class="modal-close" data-close>
+          <svg class="icon-close" width="32" height="32">
+            <use href="./img/sprite.svg#icon-x"></use>
+          </svg>
+        </button>
 
-<section class="furniture-section">
-  <div class="filters"></div>
-  <ul class="furniture-section-list"></ul>
-  <button class="load-more">Завантажити ще</button>
-</section>
+        <div class="modal-gallery"></div>
+
+        <div class="modal-part-2">
+          <h2 class="modal-title">Назва</h2>
+          <p class="modal-category text">Категорія</p>
+          <p class="modal-price">Ціна</p>
+
+          <div class="modal-rating"></div>
+
+          <form class="modal-colors"></form>
+
+          <p class="modal-description">Опис</p>
+          <p class="modal-sizes">Розміри</p>
+
+          <button class="modal-order" data-order>Перейти до замовлення</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
