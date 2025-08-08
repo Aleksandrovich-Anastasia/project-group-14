@@ -1,3 +1,3 @@
-import './furniture-detail';
+import './furniture-list';
 
-// import { api } from './api.js';
+import { api } from './api.js';
