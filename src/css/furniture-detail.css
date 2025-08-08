@@ -91,7 +91,6 @@
 .modal-star {
   width: 16px;
   height: 16px;
-  /* fill: #080c09; */
 }
 .modal-colors {
   display: flex;
@@ -154,7 +153,7 @@
   padding: 10px 24px;
   border: none;
   cursor: pointer;
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .modal-order:hover,
 .modal-order:focus {

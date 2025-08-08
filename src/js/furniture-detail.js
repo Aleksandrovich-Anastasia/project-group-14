@@ -1,8 +1,13 @@
+import { openOrderModal } from './order-modal.js';
+
 const modal = document.querySelector('[data-modal]');
 
 function openModal(furnitureItem) {
   document.body.style.overflow = 'hidden';
   modal.classList.remove('is-hidden');
+
+  modal.dataset.furnitureId = furnitureItem._id || furnitureItem.id || '';
+  modal.dataset.marker = furnitureItem.marker || '';
 
   modal.querySelector('.modal-title').textContent = furnitureItem.name;
   modal.querySelector('.modal-category').textContent = furnitureItem.category.name;
@@ -49,17 +54,17 @@ function renderStars(rate) {
 
  
   for (let i = 0; i < fullStars; i++) {
-    starsHtml += '<svg class="modal-star"><use href="./img/sprite.svg#icon-star-half"></use></svg>';
+    starsHtml += '<svg class="modal-star"><use href="./img/sprite.svg#icon-star"></use></svg>';
   }
 
 
   if (halfStar) {
-    starsHtml += '<svg class="modal-star"><use href="./img/sprite.svg#icon-star-empty"></use></svg>';
+    starsHtml += '<svg class="modal-star"><use href="./img/sprite.svg#icon-star-half"></use></svg>';
   }
 
 
   for (let i = 0; i < emptyStars; i++) {
-    starsHtml += '<svg class="modal-star"><use href="./img/sprite.svg#icon-star"></use></svg>';
+    starsHtml += '<svg class="modal-star"><use href="./img/sprite.svg#icon-star-empty"></use></svg>';
   }
 
   container.innerHTML = starsHtml;
@@ -97,13 +102,15 @@ window.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeModal();
 });
 
+const btnOrder = modal.querySelector('[data-order]');
+btnOrder?.addEventListener('click', () => {
+  closeModal();
+  openOrderModal(modal.dataset.furnitureId, modal.dataset.marker);
+});
+
 function closeModal() {
   modal.classList.add('is-hidden');
   document.body.style.overflow = 'auto';
 }
-
-document.querySelector('[data-order]')?.addEventListener('click', () => {
-  closeModal();
-});
 
 export { openModal };
