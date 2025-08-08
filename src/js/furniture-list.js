@@ -1,12 +1,46 @@
 const furnitureItems = document.querySelectorAll('.card');
+let categoryId = 'all'; // по умолчанию
+const container = document.querySelector('.price-list');
+const loadMoreBtn = document.getElementById('load-more-btn');
+
 furnitureItems.forEach(item => {
-  item.addEventListener('click', () => {
-    console.log('Клик по мебели');
+  item.addEventListener('click', e => {
+    const card = e.target.closest('.card');
+    if (!card) return; // если клик не на карточке - игнор
+
+    categoryId = card.dataset.category; // или card.id, если ты поставил атрибут id
+    console.log('Клик по категории:', categoryId);
+
+    currentPage = 1; // сбрасываем страницу при смене категории
+    furnitureList = []; // очищаем старый список
+
+    fetchFurnitureByCategory(categoryId, currentPage, limit).then(items => {
+      container.innerHTML = ''; // очищаем контейнер перед отрисовкой новых
+      renderFurniture(items);
+      loadMoreBtn.style.display = 'block'; // показываем кнопку при смене категории
+    });
   });
 });
 
-const container = document.querySelector('.price-list');
-const loadMoreBtn = document.getElementById('load-more-btn');
+function fetchFurnitureByCategory(categoryId, page = 1, limit = 8) {
+  let url = `https://furniture-store.b.goit.study/api/furnitures?page=${page}&limit=${limit}`;
+  if (categoryId && categoryId !== 'all') {
+    url += `&category=${categoryId}`;
+  }
+
+  return fetch(url)
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+      return res.json();
+    })
+    .then(data => data.furnitures)
+    .catch(err => {
+      console.error('Помилка при завантаженні меблів за категорією:', err);
+      return [];
+    });
+}
 
 let currentPage = 1;
 const limit = 8;
@@ -28,30 +62,13 @@ function fetchFurniture(page = 1, limit = 8) {
     });
 }
 
-// function renderFurniture(items) {
-//   const markup = items
-//     .map(
-//       item => `
-//       <div class="price">
-//         <img class="price-image" src="${item.images[0]}" alt="${item.name}" />
-//         <h2 class="price-title">${item.name}</h2>
-//         <p class="price-price">${item.price} грн</p>
-//         <button class="my-button">Детальніше</button>
-//       </div>
-//     `
-//     )
-//     .join('');
-
-//   container.insertAdjacentHTML('beforeend', markup);
-// }
-
 // Ініціальне завантаження
-fetchFurniture(currentPage, limit).then(renderFurniture);
+fetchFurnitureByCategory(categoryId, currentPage, limit).then(renderFurniture);
 
 // Обробник кнопки "Показати ще"
 loadMoreBtn.addEventListener('click', () => {
   currentPage += 1;
-  fetchFurniture(currentPage, limit).then(items => {
+  fetchFurnitureByCategory(categoryId, currentPage, limit).then(items => {
     if (items.length === 0) {
       loadMoreBtn.style.display = 'none';
     }
