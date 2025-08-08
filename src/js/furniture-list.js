@@ -157,3 +157,37 @@ function renderColors(colors) {
 
   container.innerHTML = title + group;
 }
+
+// Бордова рамка навколо карток списку
+
+let selectedCategory = null; // елемент з класом .selected
+
+// Автоматически выделяем первую категорию "all"
+const firstCategoryCard = Array.from(furnitureItems).find(
+  card => card.dataset.category === 'all'
+);
+
+if (firstCategoryCard) {
+  firstCategoryCard.classList.add('selected');
+  selectedCategory = firstCategoryCard;
+  categoryId = firstCategoryCard.dataset.category;
+}
+
+furnitureItems.forEach(card => {
+  card.addEventListener('click', () => {
+    // Зняти клас .selected з попередньої вибраної, якщо є
+    if (selectedCategory) {
+      selectedCategory.classList.remove('selected');
+    }
+
+    // Додати клас .selected до поточної
+    card.classList.add('selected');
+    selectedCategory = card;
+
+    // Отримати id категорії
+    const categoryId = card.dataset.category;
+    console.log('Вибрана категорія:', categoryId);
+
+    // Тут можна викликати функцію для фільтрації меблів по categoryId
+  });
+});

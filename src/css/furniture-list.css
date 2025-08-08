@@ -29,6 +29,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  overflow: hidden;
 }
 
 .card::before {
@@ -77,15 +78,6 @@
   margin-top: 8px;
 }
 
-/* .card.active {
-  border: 8px solid var(--color-madang);
-  border-radius: 8px;
-  padding: 32px 16px;
-  width: 159px;
-  height: 122px;
-  z-index: 5;
-} */
-
 .price-list {
   margin-top: 40px;
   display: flex;
@@ -127,6 +119,19 @@
 
 .color-label-group {
   margin-top: 8px;
+}
+
+.card.selected::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 8px solid #6b0609;
+  border-radius: 8px;
+  pointer-events: none;
+  box-sizing: border-box;
 }
 
 /* Styles for Tablet devices */
