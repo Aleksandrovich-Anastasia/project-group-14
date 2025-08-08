@@ -79,6 +79,7 @@
 }
 .modal-category {
   font-size: 16px;
+  line-height: 1.6;
 }
 .modal-price {
   font-weight: 700;
@@ -87,10 +88,10 @@
   letter-spacing: 0.01em;
   margin-bottom: 24px;
 }
-.modal-rating .star {
+.modal-star {
   width: 16px;
   height: 16px;
-  fill: #080c09;
+  /* fill: #080c09; */
 }
 .modal-colors {
   display: flex;

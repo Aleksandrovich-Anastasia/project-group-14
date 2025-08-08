@@ -1,24 +1,25 @@
 const modal = document.querySelector('[data-modal]');
 
-  function openModal(furnitureItem) {
-    document.body.style.overflow = 'hidden';
-    modal.classList.remove('is-hidden');
+function openModal(furnitureItem) {
+  document.body.style.overflow = 'hidden';
+  modal.classList.remove('is-hidden');
 
-    modal.querySelector('.modal-title').textContent = furnitureItem.name;
-    modal.querySelector('.modal-category').textContent = furnitureItem.category;
-    modal.querySelector('.modal-price').textContent = `${furnitureItem.price} ₴`;
-    modal.querySelector('.modal-description').textContent = furnitureItem.description;
-    modal.querySelector('.modal-sizes').textContent = furnitureItem.sizes;
+  modal.querySelector('.modal-title').textContent = furnitureItem.name;
+  modal.querySelector('.modal-category').textContent = furnitureItem.category.name;
+  modal.querySelector('.modal-price').textContent = `${furnitureItem.price} грн`;
+  modal.querySelector('.modal-description').textContent =
+    furnitureItem.description;
+  modal.querySelector('.modal-sizes').textContent = `Розміри: ${furnitureItem.sizes}`;
 
-    renderGallery(furnitureItem.images);
-    renderStars(furnitureItem.rating);
-     furnitureItem.colors = ['#c7c3bb', '#c7aa80', '#201a19']; // кольори з макету
-    renderColors(furnitureItem.colors);
-  }
+  renderGallery(furnitureItem.images);
+  renderStars(furnitureItem.rate);
+  furnitureItem.colors = ['#c7c3bb', '#c7aa80', '#201a19'];
+  renderColors(furnitureItem.colors);
+}
 
-  function renderGallery(images) {
-    const gallery = modal.querySelector('.modal-gallery');
-    
+function renderGallery(images) {
+  const gallery = modal.querySelector('.modal-gallery');
+
   if (!images || images.length === 0) {
     gallery.innerHTML = '<p>Немає зображень</p>';
     return;
@@ -39,34 +40,48 @@ const modal = document.querySelector('[data-modal]');
   gallery.innerHTML = mainImage + thumbsRow;
 }
 
+function renderStars(rate) {
+  const container = modal.querySelector('.modal-rate');
+  const fullStars = Math.floor(rate);
+  const halfStar = rate % 1 >= 0.5;
+  const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+  let starsHtml = '';
 
-  function renderStars(rating) {
-    const container = modal.querySelector('.modal-rating');
-    const fullStars = Math.floor(rating);
-    const halfStar = rating % 1 >= 0.5;
-    let starsHtml = '';
-
-    for (let i = 0; i < fullStars; i++) {
-      starsHtml += '<svg class="star"><use href="./img/sprite.svg#icon-star"></use></svg>';
-    }
-    if (halfStar) starsHtml += '<svg class="star"><use href="./img/sprite.svg#icon-star-half"></use></svg>';
-    while (starsHtml.split('svg').length - 1 < 5) {
-      starsHtml += '<svg class="star"><use href="./img/sprite.svg#icon-star-empty"></use></svg>';
-    }
-    container.innerHTML = starsHtml;
+ 
+  for (let i = 0; i < fullStars; i++) {
+    starsHtml += '<svg class="modal-star"><use href="./img/sprite.svg#icon-star-half"></use></svg>';
   }
 
-  function renderColors(colors) {
+
+  if (halfStar) {
+    starsHtml += '<svg class="modal-star"><use href="./img/sprite.svg#icon-star-empty"></use></svg>';
+  }
+
+
+  for (let i = 0; i < emptyStars; i++) {
+    starsHtml += '<svg class="modal-star"><use href="./img/sprite.svg#icon-star"></use></svg>';
+  }
+
+  container.innerHTML = starsHtml;
+}
+
+
+
+function renderColors(colors) {
   const container = modal.querySelector('.modal-colors');
   const title = `<p class="color-label-title">Колір</p>`;
-// чек бокс
+  // чек бокс
   const labels = colors
-    .map((color, i) => `
+    .map(
+      (color, i) => `
       <label class="color-label">
-        <input type="radio" name="color" value="${color}" ${i === 0 ? 'checked' : ''} />
+        <input type="radio" name="color" value="${color}" ${
+        i === 0 ? 'checked' : ''
+      } />
         <span class="color-dot" style="background-color:${color}"></span>
       </label>
-    `)
+    `
+    )
     .join('');
 
   const group = `<div class="color-label-group">${labels}</div>`;
@@ -74,42 +89,21 @@ const modal = document.querySelector('[data-modal]');
   container.innerHTML = title + group;
 }
 
-
-
-  modal.addEventListener('click', e => {
+modal.addEventListener('click', e => {
   if (e.target.closest('[data-close]') || e.target === modal) closeModal();
 });
 
-  window.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModal();
-  });
-
-  function closeModal() {
-    modal.classList.add('is-hidden');
-    document.body.style.overflow = 'auto';
-  }
-
-  document.querySelector('[data-order]')?.addEventListener('click', () => {
-    closeModal();
-  });
-
-  // Мокові дані для тесту
-const testFurniture = {
-  name: 'Софа Oslo',
-  category: 'Дивани',
-  price: 9900,
-  description: 'Класичний диван з мякими подушками та високою спинкою, ідеальний для сімейного відпочинку. Оббивка з якісної зносостійкої тканини.',
-  sizes: 'Розмір: 80x75x90',
-  rating: 4.5,
-  colors: ['#a52a2a', '#4682b4', '#2e8b57'],
-  images: [
-  'https://picsum.photos/id/1018/600/400',  // основна
-  'https://picsum.photos/id/1015/150/100',  // мініатюра 1
-  'https://picsum.photos/id/1016/150/100',  // мініатюра 2
-],
-
-};
-
-document.querySelector('#test-open')?.addEventListener('click', () => {
-  openModal(testFurniture);
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
 });
+
+function closeModal() {
+  modal.classList.add('is-hidden');
+  document.body.style.overflow = 'auto';
+}
+
+document.querySelector('[data-order]')?.addEventListener('click', () => {
+  closeModal();
+});
+
+export { openModal };
