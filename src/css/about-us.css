@@ -41,7 +41,7 @@ img {
 }
 
 .container-img-about-us {
-  border-radius: 5px;
+  border-radius: 8px;
   max-width: 335px;
   height: auto;
   margin: 0 auto;
@@ -64,7 +64,6 @@ img {
   }
 
   .container-img-about-us {
-    border-radius: 10px;
     max-width: 704px;
   }
 }
