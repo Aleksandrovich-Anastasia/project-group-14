@@ -32,6 +32,11 @@
   overflow: hidden;
 }
 
+.card.all {
+  width: 296px;
+  height: 122px;
+}
+
 .card::before {
   content: '';
   position: absolute;
