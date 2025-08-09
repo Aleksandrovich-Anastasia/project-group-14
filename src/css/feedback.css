@@ -1,72 +1,207 @@
-.reviews {
-  padding: 60px 0;
-  background-color: #fff;
-  text-align: center;
-  font-family: Arial, sans-serif;
+
+.feedback {
+  padding-top: 64px;
+  padding-bottom: 64px;
+  width: 100%;
 }
 
-.reviews-title {
-  font-size: 28px;
+.containerLitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.feedback-title {
   font-weight: 700;
-  margin-bottom: 8px;
+  font-size: 36px;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  color: #080c09;
+  margin: 0;
+  text-align: center;
 }
 
-.reviews-subtitle {
+.feedback-subtitle {
+  font-weight: 400;
   font-size: 16px;
-  color: #555;
-  margin-bottom: 32px;
+  line-height: 1.6;
+  color: #080c09;
+  margin: 0;
+  text-align: center;
 }
 
-.reviews-slider {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
+
+.feedback-list {
+  margin-top: 80px;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+  list-style: none;
+  padding: 0;
+  margin-left: 0;
+  justify-items: center;
 }
 
-.review-card {
-  background-color: #fff;
-  padding: 20px;
-  max-width: 300px;
+
+.feedback-item {
+  background: #fff;
+  padding: 24px;
+  box-shadow: 0 4px 8px rgba(8, 12, 9, 0.1);
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: left;
-}
-
-.stars {
-  color: #000;
-  font-size: 18px;
-  margin-bottom: 12px;
-}
-
-.review-text {
-  font-size: 14px;
-  color: #333;
-  margin-bottom: 16px;
-}
-
-.review-author {
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.slider-buttons {
-  margin-top: 20px;
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid transparent;
+  transition: border 0.3s ease;
+  max-width: 400px;
+  width: 100%;
 }
 
-.slider-btn {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  cursor: pointer;
+
+.feedback-item:hover,
+.feedback-item:focus,
+.feedback-item:active {
+  border: 1px dashed #9747ff;
+  border-radius: 5px;
+}
+
+
+.feedback-rating {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.feedback-rating img {
+  width: 21px;
+  height: 21px;
+  display: block;
+}
+
+
+.feedback-text {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #080c09;
+  margin: 0;
+  flex-grow: 1;
+}
+
+
+.feedback-user {
+  font-weight: 700;
   font-size: 16px;
+  line-height: 1.6;
+  color: #080c09;
+  margin: 0;
+  align-self: flex-end;
 }
 
-.slider-btn:hover {
-  background-color: #f5f5f5;
+
+.feedback-pagination {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+
+.feedback-pagination-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.feedback-pagination-item {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(8, 12, 9, 0.15);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.feedback-pagination-item:hover,
+.feedback-pagination-item:focus {
+  background-color: #080c09;
+  outline: none;
+}
+
+.feedback-pagination-item.is-active {
+  background: #080c09;
+}
+
+
+.feedback-nav {
+  display: flex;
+  gap: 16px;
+}
+
+.feedback-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 8px;
+  border: 1px solid rgba(8, 12, 9, 0.15);
+  border-radius: 100px;
+  padding: 12px;
+  width: 48px;
+  height: 48px;
+  background: var(--color-madang);;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.feedback-btn:hover,
+.feedback-btn:focus {
+  border-color: #080c09;
+  background: #e0e0e0;
+  outline: none;
+}
+
+.feedback-btn:disabled {
+  cursor: default;
+  border-color: rgba(8, 12, 9, 0.05);
+  background: rgba(242, 242, 242, 0.5);
+  pointer-events: none;
+}
+
+
+.feedback-icon {
+  display: block;
+  fill: #080c09;
+}
+
+
+@media (max-width: 767px) {
+  .feedback-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  .feedback-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .feedback-pagination-list {
+    display: flex;
+  }
+}
+
+@media (min-width: 1440px) {
+  .feedback-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .feedback-pagination-list {
+    display: flex;
+  }
 }

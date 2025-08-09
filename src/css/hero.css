@@ -1,20 +1,9 @@
 .hero {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  background-color: #f5f5f5;
-  overflow: hidden;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0;
-  padding: 20px 0 20px 20px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  position: relative;
-  z-index: 1;
+  background-image: url('/img/hero/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* та інші стилі висоти, падінгів, щоб відмалювати секцію */
 }
 
 .hero-list {
