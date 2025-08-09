@@ -29,6 +29,7 @@
   gap: 32px;
   align-items: center;
   margin-bottom: 0px;
+  color: #FFFFFF;
 }
 
 .footer-logo {
@@ -67,6 +68,35 @@
   font-size: 12px;
   text-align: center;
   margin: 0 auto;
+}
+
+
+.footer a {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.footer a:hover,
+.footer a:focus {
+  color: #975052;
+  outline: none;
+  transform: scale(1.05);
+}
+
+.footer a:active {
+  color: #6b0609;
+  transform: scale(0.95);
+}
+
+.footer-ul a:hover .icon,
+.footer-ul a:focus .icon {
+  fill: #975052;
+}
+
+.footer-ul a:active .icon {
+  fill: #6b0609;
 }
 
 @media (min-width: 768px) {
