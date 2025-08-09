@@ -1,3 +1,7 @@
+.furniture-list {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
 .text-title {
   margin-top: 16px;
 }
@@ -118,7 +122,10 @@
   line-height: 160%;
   color: #ffffff;
   display: block;
-  margin: 32px auto;
+  margin-top: 32px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
 }
 
 /* Styles for Tablet devices */
@@ -151,11 +158,15 @@
 
 /* Styles for Desktop devices */
 @media only screen and (min-width: 1280px) {
+  .furniture-list {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
   .card {
     width: 166px;
   }
 
-  .prise-image {
+  .price-image {
     width: 310px;
     height: 256px;
   }
