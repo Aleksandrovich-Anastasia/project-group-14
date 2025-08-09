@@ -8,7 +8,9 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 body {
   font-family: 'Raleway', sans-serif;
   font-weight: 500;
