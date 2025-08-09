@@ -13,7 +13,7 @@ function openModal(furnitureItem) {
 
   renderGallery(furnitureItem.images);
   renderStars(furnitureItem.rating);
-  furnitureItem.colors = ['#c7c3bb', '#c7aa80', '#201a19']; // кольори з макету
+  furnitureItem.colors = ['#c7c3bb', '#c7aa80', '#201a19']; 
   renderColors(furnitureItem.colors);
 }
 
@@ -63,7 +63,7 @@ function renderStars(rating) {
 function renderColors(colors) {
   const container = modal.querySelector('.modal-colors');
   const title = `<p class="color-label-title">Колір</p>`;
-  // чек бокс
+
   const labels = colors
     .map(
       (color, i) => `
@@ -99,7 +99,7 @@ document.querySelector('[data-order]')?.addEventListener('click', () => {
   closeModal();
 });
 
-// Мокові дані для тесту
+
 const testFurniture = {
   name: 'Софа Oslo',
   category: 'Дивани',
@@ -110,9 +110,9 @@ const testFurniture = {
   rating: 4.5,
   colors: ['#a52a2a', '#4682b4', '#2e8b57'],
   images: [
-    'https://picsum.photos/id/1018/600/400', // основна
-    'https://picsum.photos/id/1015/150/100', // мініатюра 1
-    'https://picsum.photos/id/1016/150/100', // мініатюра 2
+    'https://picsum.photos/id/1018/600/400',
+    'https://picsum.photos/id/1015/150/100',
+    'https://picsum.photos/id/1016/150/100',
   ],
 };
 
