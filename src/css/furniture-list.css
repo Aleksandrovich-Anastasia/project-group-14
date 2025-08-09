@@ -13,7 +13,6 @@
   gap: 16px;
   padding: 0;
   list-style: none;
-  /* justify-content: center; */
 }
 
 .card {
@@ -77,15 +76,6 @@
   margin-top: 8px;
 }
 
-/* .card.active {
-  border: 8px solid var(--color-madang);
-  border-radius: 8px;
-  padding: 32px 16px;
-  width: 159px;
-  height: 122px;
-  z-index: 5;
-} */
-
 .price-list {
   margin-top: 40px;
   display: flex;
@@ -129,7 +119,6 @@
   margin-top: 8px;
 }
 
-/* Styles for Tablet devices */
 @media only screen and (min-width: 768px) {
   .card {
     width: 158px;
@@ -157,7 +146,6 @@
   }
 }
 
-/* Styles for Desktop devices */
 @media only screen and (min-width: 1280px) {
   .card {
     width: 166px;
