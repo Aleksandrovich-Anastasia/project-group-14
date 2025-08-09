@@ -14,12 +14,13 @@
     box-shadow: none !important;
 }
 
-@media screen and (max-width: 767px) {
-    .container {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
+.accordion {
+    margin: 0 auto;
+}
 
+
+
+@media screen and (max-width: 767px) {
     .text-center {
         font-weight: 700;
         font-size: 36px;
@@ -34,7 +35,7 @@
     .accordion-body {
         font-weight: 400;
         font-size: 16px;
-        padding: 0 16px 12px;
+        padding:  20px 0;
     }
 
     .accordion-item {
@@ -45,12 +46,6 @@
 }
 
 @media screen and (min-width: 768px) {
-    .container {
-        max-width: 720px;
-        margin: 0 auto;
-        padding: 0 32px;
-    }
-
     .text-center {
         font-size: 48px;
     }
@@ -70,16 +65,15 @@
         margin-bottom: 16px;
         border-radius: 8px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        width: 704px;
+    }
+
+    .accordion {
+        max-width: 704px;
     }
 }
 
 @media screen and (min-width: 1440px) {
-    .container {
-        max-width: 960px;
-        margin: 0 auto;
-        padding: 0 40px;
-    }
-
     .accordion-button {
         padding: 20px;
     }
@@ -89,8 +83,11 @@
     }
 
     .accordion-item {
-        margin-bottom: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+        width: 865px;
     }
+
+    .accordion {
+        max-width: 865px;
+    }
+
 }
