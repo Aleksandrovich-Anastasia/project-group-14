@@ -8,18 +8,17 @@ let currentMarker = null;
 function openOrderModal(furnitureId = '', marker = '') {
   currentFurnitureId = furnitureId;
   currentMarker = marker;
-
   orderModal.classList.remove('is-hidden');
   document.body.style.overflow = 'hidden';
 }
 
-function closeOrderModal() {
+function closeOrderModal(resetForm = false) {
   orderModal.classList.add('is-hidden');
   document.body.style.overflow = 'auto';
-  orderForm.reset();
+  if (resetForm) orderForm.reset();
 }
 
-// Закриття по кліку на бекдроп або кнопку закриття
+// Закриття по кліку на бекдроп або кнопку
 orderModal.addEventListener('click', e => {
   if (e.target === orderModal || e.target.closest('[data-order-close]')) {
     closeOrderModal();
@@ -33,94 +32,77 @@ window.addEventListener('keydown', e => {
   }
 });
 
-// ===== Валідація телефону =====
-const phoneInput = orderForm.elements.phone; 
-let errorMessage = phoneInput.nextElementSibling;
-if (!errorMessage || !errorMessage.classList.contains('error-message')) {
-  errorMessage = document.createElement('span');
-  errorMessage.classList.add('error-message');
-  phoneInput.insertAdjacentElement('afterend', errorMessage);
+// ===== Валідація =====
+const phoneInput = orderForm.elements.phone;
+const nameInput = orderForm.elements.name;
+let errorMessagePhone = createErrorMessage(phoneInput);
+let errorMessageName = createErrorMessage(nameInput);
+
+function createErrorMessage(input) {
+  let span = input.nextElementSibling;
+  if (!span || !span.classList.contains('error-message')) {
+    span = document.createElement('span');
+    span.classList.add('error-message');
+    input.insertAdjacentElement('afterend', span);
+  }
+  return span;
 }
 
 function formatPhone(value) {
-  // Прибираємо все, крім цифр
   let digits = value.replace(/\D/g, '');
-
-  // Якщо починається з 0, прибираємо його
-  if (digits.startsWith('0')) {
-    digits = digits.slice(1);
-  }
-
-  // Якщо починається не з 38, додаємо 38
-  if (!digits.startsWith('38')) {
-    digits = '38' + digits;
-  }
-
-  // Тепер форматуємо у +38 XXX XXX XXXX
-  if (digits.length > 2) {
-    digits = '+' + digits.slice(0, 2) + ' ' +
-             digits.slice(2, 5) + ' ' +
-             digits.slice(5, 8) + ' ' +
-             digits.slice(8, 12);
-  } else {
-    digits = '+' + digits;
-  }
-  return digits.trim();
+  if (digits.startsWith('0')) digits = digits.slice(1);
+  if (!digits.startsWith('38')) digits = '38' + digits;
+  return digits.length > 2
+    ? '+' + digits.slice(0, 2) + ' ' + digits.slice(2, 5) + ' ' + digits.slice(5, 8) + ' ' + digits.slice(8, 12)
+    : '+' + digits;
 }
 
 function validatePhone() {
-  // Форматуємо номер і встановлюємо в інпут
   phoneInput.value = formatPhone(phoneInput.value);
-
-  // Перевіряємо чи відповідає формату +38 XXX XXX XXXX (загалом 13 цифр + + та пробіли)
-  // Для валідації забираємо все крім цифр і перевіряємо довжину
   const digitsOnly = phoneInput.value.replace(/\D/g, '');
-
   if (digitsOnly.length === 12 && digitsOnly.startsWith('38')) {
     phoneInput.classList.remove('error');
-    phoneInput.classList.add('valid');
-    errorMessage.textContent = '';
-    errorMessage.classList.remove('active');
+    errorMessagePhone.textContent = '';
     return true;
   } else {
     phoneInput.classList.add('error');
-    phoneInput.classList.remove('valid');
-    errorMessage.textContent = 'Error Text';
-    errorMessage.classList.add('active');
+    errorMessagePhone.textContent = 'Невірний номер телефону';
     return false;
   }
 }
 
+function validateName() {
+  const value = nameInput.value.trim();
+  if (value.length >= 2) {
+    nameInput.classList.remove('error');
+    errorMessageName.textContent = '';
+    return true;
+  } else {
+    nameInput.classList.add('error');
+    errorMessageName.textContent = 'Введіть ім’я (мінімум 2 символи)';
+    return false;
+  }
+}
 
-// Перевірка при вводі та втраті фокусу
-// Форматування номера під час вводу, без помилки
+// Live форматування
 phoneInput.addEventListener('input', () => {
-  // Просто форматування без валідації і без помилок
   phoneInput.value = formatPhone(phoneInput.value);
-  phoneInput.classList.remove('error', 'valid');
-  errorMessage.textContent = '';
-  errorMessage.classList.remove('active');
+  phoneInput.classList.remove('error');
+  errorMessagePhone.textContent = '';
 });
 
-// Валідація з показом помилки лише при втраті фокусу
-phoneInput.addEventListener('blur', () => {
-  const isValid = validatePhone();
-  // validatePhone() вже показує/ховає помилку
-});
-
-// ===== Обробка відправки форми =====
+// ===== Сабміт =====
 orderForm.addEventListener('submit', async e => {
   e.preventDefault();
 
-  if (!validatePhone()) {
-    return; // не відправляємо, якщо телефон невалідний
-  }
+  const isValid = validateName() & validatePhone(); 
+  if (!isValid) return;
 
   const formData = new FormData(orderForm);
   const data = {
-    name: formData.get('name'),
-    phone: formData.get('phone'),
-    comment: formData.get('comment'),
+    name: formData.get('name').trim(),
+    phone: formData.get('phone').trim(),
+    comment: formData.get('comment')?.trim(),
     furnitureId: currentFurnitureId,
     marker: currentMarker,
   };
@@ -137,26 +119,11 @@ orderForm.addEventListener('submit', async e => {
       throw new Error(errorData.message || 'Помилка сервера');
     }
 
-    if (window.iziToast) {
-      iziToast.success({
-        title: 'Успіх',
-        message: 'Заявка відправлена!',
-      });
-    } else {
-      alert('Заявка відправлена!');
-    }
-
-    closeOrderModal();
+    iziToast.success({ title: 'Успіх', message: 'Заявка відправлена!' });
+    closeOrderModal(true); 
 
   } catch (error) {
-    if (window.iziToast) {
-      iziToast.error({
-        title: 'Помилка',
-        message: error.message,
-      });
-    } else {
-      alert('Помилка: ' + error.message);
-    }
+    iziToast.error({ title: 'Помилка', message: error.message });
   }
 });
 
