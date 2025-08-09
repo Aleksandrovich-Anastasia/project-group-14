@@ -28,27 +28,8 @@ function fetchFurniture(page = 1, limit = 8) {
     });
 }
 
-// function renderFurniture(items) {
-//   const markup = items
-//     .map(
-//       item => `
-//       <div class="price">
-//         <img class="price-image" src="${item.images[0]}" alt="${item.name}" />
-//         <h2 class="price-title">${item.name}</h2>
-//         <p class="price-price">${item.price} грн</p>
-//         <button class="my-button">Детальніше</button>
-//       </div>
-//     `
-//     )
-//     .join('');
-
-//   container.insertAdjacentHTML('beforeend', markup);
-// }
-
-// Ініціальне завантаження
 fetchFurniture(currentPage, limit).then(renderFurniture);
 
-// Обробник кнопки "Показати ще"
 loadMoreBtn.addEventListener('click', () => {
   currentPage += 1;
   fetchFurniture(currentPage, limit).then(items => {

@@ -159,7 +159,7 @@
 .modal-order:focus {
   opacity: 0.5;
 }
-/* Styles for Tablet devices */
+
 @media only screen and (min-width: 768px) {
   .modal-window {
     padding: 64px 32px;
@@ -178,7 +178,7 @@
     width: 310px;
   }
 }
-/* Styles for Desktop devices */
+
 @media only screen and (min-width: 1280px) {
   .modal-window {
     display: flex;
