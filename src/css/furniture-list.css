@@ -24,6 +24,7 @@
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
+  z-index: 0;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -77,11 +78,14 @@
   margin-top: 8px;
 }
 
-.card.selected {
+.card.selected::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   border: 8px solid #6b0609;
   border-radius: 8px;
-  padding: 32px 16px;
-  z-index: 5;
+  pointer-events: none;
+  z-index: 3; /* вище за ::before */
 }
 
 .price-list {
