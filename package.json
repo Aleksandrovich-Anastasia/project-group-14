@@ -22,6 +22,8 @@
   "dependencies": {
     "accordion-js": "^3.4.1",
     "axios": "^1.11.0",
+    "raty-js": "^4.3.0",
+    "swiper": "^11.2.10",
     "vite-plugin-full-reload": "^1.2.0",
     "vite-plugin-html-inject": "^1.1.2"
   }

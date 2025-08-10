@@ -1,0 +1,146 @@
+
+/* Базові (гумові) стилі */
+.section {
+  width: 100%;
+  min-height: 100vh; /* секція займає висоту екрану */
+}
+
+/* Мобільний режим — з 375px */
+@media (min-width: 375px) {
+  .section {
+    max-width: 375px;
+    height: 718px;        /* фіксована висота секції 375×718 */
+    margin: 0 auto;       /* центрування секції */
+  }
+}
+
+.feedback-rating {
+  display: flex;
+  flex-direction: row;
+  gap: 2px; 
+  align-items: center; 
+
+}
+
+.feedback-rating img {
+  width: 21px;
+  height: 21px;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  color: #080c09;
+}
+
+  .feedback-text {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #080c09;
+  }
+
+.feedback-user {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #080c09;
+}
+
+.feedback {
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.containerLitle {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.feedback-subtitle text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #080c09;
+}
+.feedback-list {
+  margin-top: 80px;
+}
+
+.feedback-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+.feedback-pagination {
+
+  display: flex;
+  /* align-items: flex-end;
+  justify-content: flex-start; */
+  align-items: center;
+  /* justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  gap: 16px; */
+}
+
+.feedback-nav {
+  display: flex;
+  gap: 16px;
+}
+
+.feedback-pagination-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feedback-pagination-item {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(8, 12, 9, 0.15);
+  cursor: pointer;
+}
+
+.feedback-pagination-item.is-active {
+  background: #080c09;
+}
+
+
+.feedback-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  cursor: pointer;
+  gap: 8px;
+  border: 1px solid rgba(8, 12, 9, 0.15);
+  border-radius: 100px;
+  padding: 12px;
+  width: 48px;
+  height: 48px;
+  background: #f2f2f2;
+
+}
+/* Планшет — з 768px */
+@media (min-width: 768px) {
+  .section {
+    max-width: 768px;
+    height: auto;         /* можна прибрати жорстку висоту */
+  }
+}
+
+/* Десктоп — з 1440px */
+@media (min-width: 1440px) {
+  .section {
+    max-width: 1440px;
+  }
+}
