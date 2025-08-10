@@ -186,5 +186,6 @@ furnitureItems.forEach(card => {
 
     // Отримати id категорії
     const categoryId = card.dataset.category;
+    console.log('Вибрана категорія:', categoryId);
   });
 });
