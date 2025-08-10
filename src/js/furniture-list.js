@@ -1,6 +1,6 @@
 import { openModal } from './furniture-detail.js';
 
-const furnitureItems = document.querySelectorAll('.card');
+const furnitureItems = document.querySelectorAll('.card[data-category-id]');
 const container = document.querySelector('.price-list');
 const loadMoreBtn = document.getElementById('load-more-btn');
 
@@ -12,12 +12,12 @@ let selectedCategory = null; // для підсвітки активної ка�
 
 // --- Виділення першої категорії "all" ---
 const firstCategoryCard = Array.from(furnitureItems).find(
-  card => card.dataset.category === 'all'
+  card => card.dataset.categoryId === 'all'
 );
 if (firstCategoryCard) {
   firstCategoryCard.classList.add('selected');
   selectedCategory = firstCategoryCard;
-  categoryId = firstCategoryCard.dataset.category;
+  categoryId = firstCategoryCard.dataset.categoryId;
 }
 
 // --- Обробка кліку на категорію ---
@@ -34,7 +34,7 @@ furnitureItems.forEach(card => {
     selectedCategory = clickedCard;
 
     // Зміна категорії
-    categoryId = clickedCard.dataset.category;
+    categoryId = clickedCard.dataset.categoryId;
     console.log('Клік по категорії:', categoryId);
 
     // Скидаємо дані
@@ -71,31 +71,13 @@ function fetchFurnitureByCategory(categoryId, page = 1, limit = 8) {
     });
 }
 
-// --- Запит без категорії ---
-function fetchFurniture(page = 1, limit = 8) {
-  return fetch(
-    `https://furniture-store.b.goit.study/api/furnitures?page=${page}&limit=${limit}`
-  )
-    .then(res => {
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
-      return res.json();
-    })
-    .then(data => data.furnitures)
-    .catch(err => {
-      console.error('Помилка при завантаженні меблів:', err);
-      return [];
-    });
-}
-
 // --- Рендер ---
 function renderFurniture(items) {
   furnitureList = furnitureList.concat(items);
 
   const markup = items
     .map((item, index) => {
-      const colors = item.colors || ['#c7c3bb', '#c7aa80', '#201a19'];
+      const colors = item.color || ['#c7c3bb', '#c7aa80', '#201a19'];
 
       const colorsMarkup = `
         <div class="color-label-group">
@@ -157,27 +139,6 @@ container.addEventListener('click', e => {
     }
   }
 });
-
-// --- Рендер кольорів (для модалки) ---
-function renderColors(colors) {
-  const container = modal.querySelector('.price');
-  const title = `<p class="color-label-title">Колір</p>`;
-  const labels = colors
-    .map(
-      (color, i) => `
-        <label class="color-label">
-          <input type="radio" name="color" value="${color}" ${
-        i === 0 ? 'checked' : ''
-      } />
-          <span class="color-dot" style="background-color:${color}"></span>
-        </label>
-      `
-    )
-    .join('');
-
-  const group = `<div class="color-label-group">${labels}</div>`;
-  container.innerHTML = title + group;
-}
 
 // --- Початкове завантаження ---
 fetchFurnitureByCategory(categoryId, currentPage, limit).then(renderFurniture);
