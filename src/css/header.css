@@ -187,15 +187,18 @@ body.no-scroll {
     align-items: center;
     justify-content: flex-end;
     gap: 32px;
+    margin-bottom: 0;
+    padding: 0;
   }
 
   .nav-link-header {
     position: relative;
     display: block;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 1.29;
-    letter-spacing: 0.02em;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #080c09;
+    text-decoration: none;
     transition: 200ms ease-in;
   }
 
