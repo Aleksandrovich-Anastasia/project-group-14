@@ -25,6 +25,8 @@
   max-height: 90vh;
   overflow-y: auto;
   box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
 }
 .modal-close {
   position: absolute;
