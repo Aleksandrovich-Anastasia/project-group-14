@@ -35,7 +35,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   z-index: 1;
 }
@@ -77,14 +77,12 @@
   margin-top: 8px;
 }
 
-/* .card.active {
-  border: 8px solid var(--color-madang);
+.card.selected {
+  border: 8px solid #6b0609;
   border-radius: 8px;
   padding: 32px 16px;
-  width: 159px;
-  height: 122px;
   z-index: 5;
-} */
+}
 
 .price-list {
   margin-top: 40px;
@@ -127,7 +125,9 @@
   margin-right: auto;
   margin-bottom: 0;
 }
-
+/* .card.all {
+  width: 296px;
+} */
 /* Styles for Tablet devices */
 @media only screen and (min-width: 768px) {
   .card {
