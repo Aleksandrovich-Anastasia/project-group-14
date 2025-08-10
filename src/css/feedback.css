@@ -1,25 +1,65 @@
-
-/* Базові (гумові) стилі */
-.section {
+.feedback {
+  padding: 64px 0;
   width: 100%;
-  min-height: 100vh; /* секція займає висоту екрану */
 }
 
-/* Мобільний режим — з 375px */
-@media (min-width: 375px) {
-  .section {
-    max-width: 375px;
-    height: 718px;        /* фіксована висота секції 375×718 */
-    margin: 0 auto;       /* центрування секції */
-  }
+.containerLitle {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.feedback-title {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  color: #080c09;
+  margin: 0;
+  text-align: center;
+}
+
+.feedback-subtitle {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #080c09;
+  margin: 0;
+  text-align: left;
+}
+
+.feedback-list {
+  margin-top: 80px;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+  list-style: none;
+  padding: 0;
+  justify-items: center;
+}
+
+.feedback-item {
+  background: #fff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid transparent;
+  transition: border 0.3s ease;
+  max-width: 400px;
+  width: 335px;
+}
+
+.feedback-item:hover {
+  border: 1px dashed #9747ff;
 }
 
 .feedback-rating {
   display: flex;
-  flex-direction: row;
-  gap: 2px; 
-  align-items: center; 
-
+  gap: 4px;
+  align-items: center;
+  margin-bottom: 24px;
 }
 
 .feedback-rating img {
@@ -27,79 +67,40 @@
   height: 21px;
 }
 
-h2 {
-  font-weight: 700;
-  font-size: 36px;
-  line-height: 1.2;
-  letter-spacing: 0.01em;
+.feedback-text {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.6;
   color: #080c09;
+  margin: 0 0 24px 0;
+  flex-grow: 1;
 }
-
-  .feedback-text {
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 1.6;
-    color: #080c09;
-  }
 
 .feedback-user {
   font-weight: 700;
   font-size: 16px;
   line-height: 1.6;
   color: #080c09;
+  margin: 0;
+  align-self: flex-end;
 }
 
-.feedback {
-  padding-top: 64px;
-  padding-bottom: 64px;
-}
-
-.containerLitle {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.feedback-subtitle text {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.6;
-  color: #080c09;
-}
-.feedback-list {
-  margin-top: 80px;
-}
-
-.feedback-controls {
+/* Пагінація */
+.feedback-pagination {
+  margin-top: 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 32px;
-}
-
-.feedback-pagination {
-
-  display: flex;
-  /* align-items: flex-end;
-  justify-content: flex-start; */
-  align-items: center;
-  /* justify-content: space-between;
-  align-items: center;
   flex-direction: row;
-  gap: 16px; */
-}
-
-.feedback-nav {
-  display: flex;
-  gap: 16px;
 }
 
 .feedback-pagination-list {
   display: flex;
   align-items: center;
   gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .feedback-pagination-item {
@@ -108,39 +109,79 @@ h2 {
   border-radius: 50%;
   background: rgba(8, 12, 9, 0.15);
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.feedback-pagination-item:hover,
+.feedback-pagination-item:focus {
+  background-color: #080c09;
 }
 
 .feedback-pagination-item.is-active {
   background: #080c09;
 }
 
+.feedback-nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
 
 .feedback-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
   cursor: pointer;
-  gap: 8px;
   border: 1px solid rgba(8, 12, 9, 0.15);
-  border-radius: 100px;
+  border-radius: 50%;
   padding: 12px;
   width: 48px;
   height: 48px;
-  background: #f2f2f2;
-
+  background: var(--color-madang);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
-/* Планшет — з 768px */
-@media (min-width: 768px) {
-  .section {
-    max-width: 768px;
-    height: auto;         /* можна прибрати жорстку висоту */
+
+.feedback-btn:hover {
+  border-color: #080c09;
+  background: #e0e0e0;
+}
+
+.feedback-btn:disabled {
+  cursor: default;
+  border-color: rgba(8, 12, 9, 0.05);
+  background: rgba(242, 242, 242, 0.5);
+}
+
+.feedback-icon {
+  fill: #080c09;
+}
+
+/* Мобільний */
+@media (max-width: 767px) {
+  .feedback-list {
+    grid-template-columns: 1fr;
+  }
+  .feedback-pagination {
+    justify-content: space-between;
+  }
+  .feedback-pagination-list {
+    justify-content: center;
+  }
+  .feedback-nav {
+    justify-content: center;
   }
 }
 
-/* Десктоп — з 1440px */
-@media (min-width: 1440px) {
-  .section {
-    max-width: 1440px;
+/* Планшети і ПК */
+@media (min-width: 768px) {
+  .feedback-pagination {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .feedback-pagination-list {
+    justify-content: flex-start;
+  }
+  .feedback-nav {
+    justify-content: flex-end;
   }
 }

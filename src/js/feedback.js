@@ -1,4 +1,3 @@
-
 import Raty from 'raty-js';
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
