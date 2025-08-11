@@ -15,7 +15,11 @@
   list-style: none;
   /* justify-content: center; */
 }
-
+@media only screen and (max-width: 374px) {
+  .card {
+    max-width: 132px;
+  }
+}
 .card {
   box-sizing: border-box;
   width: 159px;
@@ -30,6 +34,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  cursor: pointer;
 }
 
 .card::before {
@@ -128,10 +133,7 @@
   margin-right: auto;
   margin-bottom: 0;
 }
-/* .card.all {
-  width: 296px;
-} */
-/* Styles for Tablet devices */
+
 @media only screen and (min-width: 768px) {
   .card {
     width: 158px;

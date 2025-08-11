@@ -42,8 +42,9 @@ body.no-scroll {
   color: #080c09;
   text-decoration: none;
   display: block;
-  text-align: center; /* вирівнюємо текст по правому краю */
+  text-align: center;
   width: 100%;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-link-header-btn,
@@ -73,7 +74,9 @@ body.no-scroll {
 .nav-link-header-btn:hover,
 .menu-link-header-btn:hover,
 .nav-link-header-btn:focus,
-.menu-link-header-btn:focus {
+.menu-link-header-btn:focus,
+.menu-link-header:focus,
+.menu-link-header:hover {
   opacity: 0.5;
 }
 
