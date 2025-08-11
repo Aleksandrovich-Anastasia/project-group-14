@@ -1,16 +1,23 @@
 import { openModal } from './furniture-detail.js';
-
 const furnitureItems = document.querySelectorAll('.card[data-category-id]');
 const container = document.querySelector('.price-list');
 const loadMoreBtn = document.getElementById('load-more-btn');
-
-let categoryId = 'all'; // поточна категорія
+// :small_blue_diamond: ЛОАДЕР: создаём элемент
+const loader = document.createElement('div');
+loader.classList.add('loader');
+loader.innerHTML = `<div class="spinner"></div>`;
+document.body.appendChild(loader);
+function showLoader() {
+  loader.style.display = 'flex';
+}
+function hideLoader() {
+  loader.style.display = 'none';
+}
+let categoryId = 'all';
 let currentPage = 1;
 const limit = 8;
 let furnitureList = [];
-let selectedCategory = null; // для підсвітки активної категорії
-
-// --- Виділення першої категорії "all" ---
+let selectedCategory = null;
 const firstCategoryCard = Array.from(furnitureItems).find(
   card => card.dataset.categoryId === 'all'
 );
@@ -19,44 +26,37 @@ if (firstCategoryCard) {
   selectedCategory = firstCategoryCard;
   categoryId = firstCategoryCard.dataset.categoryId;
 }
-
-// --- Обробка кліку на категорію ---
+// --- Обработка клика на категорию ---
 furnitureItems.forEach(card => {
   card.addEventListener('click', e => {
     const clickedCard = e.target.closest('.card');
     if (!clickedCard) return;
-
-    // Підсвітка
     if (selectedCategory) {
       selectedCategory.classList.remove('selected');
     }
     clickedCard.classList.add('selected');
     selectedCategory = clickedCard;
-
-    // Зміна категорії
     categoryId = clickedCard.dataset.categoryId;
-    console.log('Клік по категорії:', categoryId);
-
-    // Скидаємо дані
+    console.log('Клик по категории:', categoryId);
     currentPage = 1;
     furnitureList = [];
-
-    // Завантажуємо нові товари
+    
+    showLoader();
     fetchFurnitureByCategory(categoryId, currentPage, limit).then(items => {
       container.innerHTML = '';
       renderFurniture(items);
       loadMoreBtn.style.display = items.length < limit ? 'none' : 'block';
+      
+      hideLoader();
     });
   });
 });
-
-// --- Запит меблів з категорією ---
+// --- Запрос мебели ---
 function fetchFurnitureByCategory(categoryId, page = 1, limit = 8) {
   let url = `https://furniture-store.b.goit.study/api/furnitures?page=${page}&limit=${limit}`;
   if (categoryId && categoryId !== 'all') {
     url += `&category=${categoryId}`;
   }
-
   return fetch(url)
     .then(res => {
       if (!res.ok) {
@@ -66,19 +66,16 @@ function fetchFurnitureByCategory(categoryId, page = 1, limit = 8) {
     })
     .then(data => data.furnitures)
     .catch(err => {
-      console.error('Помилка при завантаженні меблів за категорією:', err);
+      console.error('Ошибка при загрузке мебели:', err);
       return [];
     });
 }
-
 // --- Рендер ---
 function renderFurniture(items) {
   furnitureList = furnitureList.concat(items);
-
   const markup = items
     .map((item, index) => {
-      const colors = item.color || ['#c7c3bb', '#c7aa80', '#201a19'];
-
+      const colors = item.color || ['#C7C3BB', '#C7AA80', '#201A19'];
       const colorsMarkup = `
         <div class="color-label-group">
           ${colors
@@ -95,7 +92,6 @@ function renderFurniture(items) {
             .join('')}
         </div>
       `;
-
       return `
         <div class="price" data-index="${
           furnitureList.length - items.length + index
@@ -109,29 +105,28 @@ function renderFurniture(items) {
       `;
     })
     .join('');
-
   container.insertAdjacentHTML('beforeend', markup);
 }
-
-// --- Подія на кнопку "Показати ще" ---
+// --- Кнопка "Показать ещё" ---
 loadMoreBtn.addEventListener('click', () => {
   currentPage += 1;
+  // :small_blue_diamond: ЛОАДЕР: показываем
+  showLoader();
   fetchFurnitureByCategory(categoryId, currentPage, limit).then(items => {
     if (items.length === 0) {
       loadMoreBtn.style.display = 'none';
     }
     renderFurniture(items);
+    // :small_blue_diamond: ЛОАДЕР: скрываем
+    hideLoader();
   });
 });
-
-// --- Обробка кліку на кнопку "Детальніше" ---
+// --- Кнопка "Детальніше" ---
 container.addEventListener('click', e => {
   const btn = e.target.closest('.my-button');
   if (!btn) return;
-
   const card = btn.closest('.price');
   const index = Number(card.dataset.index);
-
   if (!isNaN(index)) {
     const furnitureItem = furnitureList[index];
     if (furnitureItem) {
@@ -139,6 +134,9 @@ container.addEventListener('click', e => {
     }
   }
 });
-
-// --- Початкове завантаження ---
-fetchFurnitureByCategory(categoryId, currentPage, limit).then(renderFurniture);
+// --- Начальная загрузка ---
+showLoader();
+fetchFurnitureByCategory(categoryId, currentPage, limit).then(items => {
+  renderFurniture(items);
+  hideLoader();
+});

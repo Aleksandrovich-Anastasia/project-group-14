@@ -106,5 +106,3 @@ navButtons.forEach(btn => {
   });
 });
 initFeedback();
-
-
