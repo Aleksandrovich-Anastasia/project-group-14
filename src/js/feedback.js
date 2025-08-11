@@ -82,7 +82,14 @@ export async function initFeedback() {
     console.error('Failed to load feedbacks', err);
   }
 }
+const navButtons = document.querySelectorAll('.feedback-btn');
 
+navButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    navButtons.forEach(b => b.classList.remove('is-active'));
+    btn.classList.add('is-active');
+  });
+});
 initFeedback();
 
 

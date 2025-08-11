@@ -137,25 +137,54 @@
   padding: 12px;
   width: 48px;
   height: 48px;
-  background: var(--color-madang);
+  fill: #080c09;
+  background-color: #f2f2f2;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.feedback-btn:hover {
-  border-color: #080c09;
-  background: #e0e0e0;
+.feedback-btn:hover,
+.feedback-btn:focus {
+  border: 1px solid rgba(8, 12, 9, 0.15);
+  background-color: #975052;
+  fill: #fff !important;
 }
 
 .feedback-btn:disabled {
   cursor: default;
-  border-color: rgba(8, 12, 9, 0.05);
-  background: rgba(242, 242, 242, 0.5);
-}
-
-.feedback-icon {
+  border: 1px solid rgba(8, 12, 9, 0.15);
+  background-color: #f2f2f2;
+  opacity: 0.3;
   fill: #080c09;
 }
 
+.feedback-icon path {
+  fill: #080c09;
+  transition: fill 0.3s ease;
+}
+
+/* Hover і focus */
+.feedback-btn:hover .feedback-icon path,
+.feedback-btn:focus .feedback-icon path {
+  fill: #fff;
+}
+.feedback-btn.is-active {
+  background-color: #6b0609;
+  fill: #fff !important;
+}
+
+.feedback-btn.is-active .feedback-icon path {
+  fill: #fff;
+}
+
+/* Active */
+.feedback-btn:hover:active,
+.feedback-btn:focus:active {
+  background-color: #6b0609;
+}
+/* Disabled */
+.feedback-btn:disabled .feedback-icon path {
+  fill: #080c09;
+}
 /* Мобільний */
 @media (max-width: 767px) {
   .feedback-list {
