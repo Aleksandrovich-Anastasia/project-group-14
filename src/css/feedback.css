@@ -1,8 +1,12 @@
+/* =========================
+   FEEDBACK SECTION
+   ========================= */
 .feedback {
   padding: 64px 0;
   width: 100%;
 }
 
+/* --- Заголовки секції --- */
 .containerLitle {
   display: flex;
   flex-direction: column;
@@ -11,29 +15,30 @@
 }
 
 .feedback-title {
+  margin: 0;
   font-weight: 700;
   font-size: 36px;
   line-height: 1.2;
   letter-spacing: 0.01em;
   color: #080c09;
-  margin: 0;
   text-align: center;
 }
 
 .feedback-subtitle {
+  margin: 0;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.6;
   color: #080c09;
-  margin: 0;
   text-align: left;
 }
 
+/* --- Список відгуків --- */
 .feedback-list {
   margin-top: 80px;
   display: grid;
-  gap: 24px;
   grid-template-columns: 1fr;
+  gap: 24px;
   list-style: none;
   padding: 0;
   justify-items: center;
@@ -47,14 +52,14 @@
   gap: 16px;
   border: 1px solid transparent;
   transition: border 0.3s ease;
-  max-width: 400px;
-  width: 335px;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  margin-right: 0 !important;
 }
 
-.feedback-item:hover {
-  border: 1px dashed #9747ff;
-}
-
+/* --- Рейтинг --- */
 .feedback-rating {
   display: flex;
   gap: 4px;
@@ -67,25 +72,28 @@
   height: 21px;
 }
 
+/* --- Текст та користувач --- */
 .feedback-text {
+  margin: 0 0 24px 0;
   font-weight: 500;
   font-size: 18px;
   line-height: 1.6;
   color: #080c09;
-  margin: 0 0 24px 0;
   flex-grow: 1;
 }
 
 .feedback-user {
+  margin: 0;
   font-weight: 700;
   font-size: 16px;
   line-height: 1.6;
   color: #080c09;
-  margin: 0;
   align-self: flex-end;
 }
 
-/* Пагінація */
+/* =========================
+   PAGINATION & NAVIGATION
+   ========================= */
 .feedback-pagination {
   margin-top: 32px;
   display: flex;
@@ -121,6 +129,7 @@
   background: #080c09;
 }
 
+/* --- Кнопки навігації --- */
 .feedback-nav {
   display: flex;
   gap: 16px;
@@ -131,71 +140,65 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  border: 1px solid rgba(8, 12, 9, 0.15);
-  border-radius: 50%;
-  padding: 12px;
   width: 48px;
   height: 48px;
-  fill: #080c09;
+  padding: 12px;
+  border: 1px solid rgba(8, 12, 9, 0.15);
+  border-radius: 50%;
   background-color: #f2f2f2;
+  fill: #080c09;
+  cursor: pointer;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .feedback-btn:hover,
 .feedback-btn:focus {
-  border: 1px solid rgba(8, 12, 9, 0.15);
   background-color: #975052;
   fill: #fff !important;
 }
 
 .feedback-btn:disabled {
+  background-color: #f2f2f2 !important;
   cursor: default;
-  border: 1px solid rgba(8, 12, 9, 0.15);
-  background-color: #f2f2f2;
   opacity: 0.3;
-  fill: #080c09;
 }
 
-.feedback-icon path {
-  fill: #080c09;
-  transition: fill 0.3s ease;
-}
-
-/* Hover і focus */
-.feedback-btn:hover .feedback-icon path,
-.feedback-btn:focus .feedback-icon path {
-  fill: #fff;
-}
 .feedback-btn.is-active {
   background-color: #6b0609;
   fill: #fff !important;
 }
 
+/* --- Іконки --- */
+.feedback-icon path {
+  fill: #080c09;
+  transition: fill 0.3s ease;
+}
+
+.feedback-btn:hover .feedback-icon path,
+.feedback-btn:focus .feedback-icon path,
 .feedback-btn.is-active .feedback-icon path {
   fill: #fff;
 }
 
-/* Active */
-.feedback-btn:hover:active,
-.feedback-btn:focus:active {
-  background-color: #6b0609;
-}
-/* Disabled */
 .feedback-btn:disabled .feedback-icon path {
   fill: #080c09;
 }
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
 /* Мобільний */
 @media (max-width: 767px) {
   .feedback-list {
     grid-template-columns: 1fr;
   }
+
   .feedback-pagination {
     justify-content: space-between;
   }
-  .feedback-pagination-list {
-    justify-content: center;
-  }
+
+  .feedback-pagination-list,
   .feedback-nav {
     justify-content: center;
   }
@@ -207,9 +210,11 @@
     flex-direction: row;
     justify-content: space-between;
   }
+
   .feedback-pagination-list {
     justify-content: flex-start;
   }
+
   .feedback-nav {
     justify-content: flex-end;
   }

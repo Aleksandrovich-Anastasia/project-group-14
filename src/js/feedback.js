@@ -28,9 +28,9 @@ export async function initFeedback() {
   },
 });
     
-    // const items = Array.isArray(data) ? data.slice(0, 10) : (data.results || []).slice(0, 10);
+    
     const items = Array.isArray(data.feedbacks) ? data.feedbacks.slice(0, 10) : [];
-    // console.log(data);
+  
 
     const markup = items
        .map(item => {
@@ -63,19 +63,32 @@ export async function initFeedback() {
     });
 
         new Swiper('.feedback-swiper', {
-      modules: [Navigation, Pagination],
-      navigation: {
-        nextEl: '.feedback-next',
-        prevEl: '.feedback-prev',
-      },
-            pagination: {
-        el: '.feedback-pagination-list',
-        clickable: true,
-        bulletClass: 'feedback-pagination-item',
-        bulletActiveClass: 'is-active',
-        renderBullet: (index, className) => `<li class="${className}"></li>`,
-      },
-    });
+  modules: [Navigation, Pagination],
+  navigation: {
+    nextEl: '.feedback-next',
+    prevEl: '.feedback-prev',
+  },
+  pagination: {
+    el: '.feedback-pagination-list',
+    clickable: true,
+    bulletClass: 'feedback-pagination-item',
+    bulletActiveClass: 'is-active',
+    renderBullet: (index, className) => `<li class="${className}"></li>`,
+  },
+  spaceBetween: 24, // відстань між картками
+  breakpoints: {
+    0: {          // мобільні
+      slidesPerView: 1,
+    },
+    768: {        // планшети
+      slidesPerView: 2,
+    },
+    1440: {       // десктопи
+      slidesPerView: 3,
+    },
+  },
+});
+
 
 
   } catch (err) {
