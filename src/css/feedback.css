@@ -189,23 +189,27 @@
    ========================= */
 
 /* Мобільний */
-@media (max-width: 767px) {
+@media only screen and (min-width: 768px) {
   .feedback-list {
-    grid-template-columns: 1fr;
+    grid-template-columns: 2fr;
   }
 
   .feedback-pagination {
+    flex-direction: row;
     justify-content: space-between;
   }
 
   .feedback-pagination-list,
   .feedback-nav {
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
 
 /* Планшети і ПК */
-@media (min-width: 768px) {
+@media only screen and (min-width: 1440px) {
+  .feedback-list {
+    grid-template-columns: 3fr;
+  }
   .feedback-pagination {
     flex-direction: row;
     justify-content: space-between;

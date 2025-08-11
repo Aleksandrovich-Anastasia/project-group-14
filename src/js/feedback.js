@@ -73,6 +73,8 @@ export async function initFeedback() {
     clickable: true,
     bulletClass: 'feedback-pagination-item',
     bulletActiveClass: 'is-active',
+    // включає динамічні крапки
+    dynamicMainBullets: 6, 
     renderBullet: (index, className) => `<li class="${className}"></li>`,
   },
   spaceBetween: 24, // відстань між картками
