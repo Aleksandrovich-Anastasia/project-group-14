@@ -36,8 +36,6 @@
 /* --- Список відгуків --- */
 .feedback-list {
   margin-top: 80px;
-  display: grid;
-  grid-template-columns: 1fr;
   gap: 24px;
   list-style: none;
   padding: 0;
@@ -190,10 +188,6 @@
 
 /* Мобільний */
 @media only screen and (min-width: 768px) {
-  .feedback-list {
-    grid-template-columns: 2fr;
-  }
-
   .feedback-pagination {
     flex-direction: row;
     justify-content: space-between;
@@ -207,9 +201,6 @@
 
 /* Планшети і ПК */
 @media only screen and (min-width: 1440px) {
-  .feedback-list {
-    grid-template-columns: 3fr;
-  }
   .feedback-pagination {
     flex-direction: row;
     justify-content: space-between;
