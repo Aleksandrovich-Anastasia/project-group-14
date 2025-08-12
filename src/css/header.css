@@ -23,7 +23,6 @@ body.no-scroll {
 
 .nav-list-header {
   display: none;
-  /* ховаємо навігацію на мобільних */
 }
 
 .menu-item-header {
@@ -93,7 +92,6 @@ body.no-scroll {
   position: relative;
   z-index: 1100;
   display: block;
-  /* показуємо на мобільних */
 }
 
 .menu-close {
@@ -108,10 +106,8 @@ body.no-scroll {
   cursor: pointer;
   z-index: 1200;
   display: none;
-  /* ховаємо за замовчуванням */
 }
 
-/* При відкритті меню: показуємо хрестик, ховаємо бургер */
 .menu-header.is-open+.burger-open {
   display: none;
 }
@@ -120,12 +116,10 @@ body.no-scroll {
   display: block;
 }
 
-/* Мобільне меню */
 .menu-header {
   display: none;
   position: fixed;
   top: 72px;
-  /* під хедером */
   right: 0;
   width: 100%;
   height: calc(100% - 72px);
@@ -137,7 +131,6 @@ body.no-scroll {
   transform: translateX(100%);
 }
 
-/* Показ меню при відкритті */
 .menu-header.is-open {
   display: block;
   transform: translateX(0);
