@@ -5,6 +5,7 @@
   line-height: 160%;
   color: #fff;
   background-color: #6b0609;
+  padding-bottom: 32px;
 }
 
 .footer-container {
@@ -26,7 +27,7 @@
   gap: 32px;
   align-items: center;
   margin-bottom: 0px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .footer-logo {
@@ -64,7 +65,7 @@
 .icon-footer-logo {
   fill: #fff;
   width: 228px;
-    height: 97px;
+  height: 97px;
 }
 
 .footer-ul .icon-footer {
@@ -80,7 +81,6 @@
   text-align: center;
   margin: 0 auto;
 }
-
 
 .footer a {
   cursor: pointer;
@@ -138,13 +138,16 @@
 }
 
 @media (min-width: 1440px) {
+  .footer {
+    padding: 0;
+  }
+
   .footer-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     gap: 80px;
-    padding: 0px 64px;
   }
 
   .footer-logo {
