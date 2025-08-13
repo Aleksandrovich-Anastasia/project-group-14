@@ -22,7 +22,7 @@ body.no-scroll {
 }
 
 .nav-list-header {
-  display: none; /* ховаємо навігацію на мобільних */
+  display: none;
 }
 
 .menu-item-header {
@@ -91,7 +91,7 @@ body.no-scroll {
   cursor: pointer;
   position: relative;
   z-index: 1100;
-  display: block; /* показуємо на мобільних */
+  display: block;
 }
 
 .menu-close {
@@ -105,23 +105,21 @@ body.no-scroll {
   padding: 0;
   cursor: pointer;
   z-index: 1200;
-  display: none; /* ховаємо за замовчуванням */
-}
-
-/* При відкритті меню: показуємо хрестик, ховаємо бургер */
-.menu-header.is-open + .burger-open {
   display: none;
 }
 
-.menu-header.is-open ~ .menu-close {
+.menu-header.is-open+.burger-open {
+  display: none;
+}
+
+.menu-header.is-open~.menu-close {
   display: block;
 }
 
-/* Мобільне меню */
 .menu-header {
   display: none;
   position: fixed;
-  top: 72px; /* під хедером */
+  top: 72px;
   right: 0;
   width: 100%;
   height: calc(100% - 72px);
@@ -133,7 +131,6 @@ body.no-scroll {
   transform: translateX(100%);
 }
 
-/* Показ меню при відкритті */
 .menu-header.is-open {
   display: block;
   transform: translateX(0);
@@ -150,9 +147,11 @@ body.no-scroll {
   .menu-list-header {
     align-items: flex-end;
   }
+
   .menu-link-header {
     text-align: right;
   }
+
   .menu-link-header-btn {
     display: flex;
     justify-content: center;
@@ -173,9 +172,11 @@ body.no-scroll {
     background-color: #6b0609;
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
+
   .menu-item-header {
     justify-content: flex-end;
   }
+
   .menu-header {
     max-width: 298px;
     height: auto;
