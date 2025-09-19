@@ -2,6 +2,7 @@ import { openOrderModal } from './order-modal.js';
 
 const modal = document.querySelector('[data-modal]');
 
+
 let tempFurnitureId = null;
 let tempMarker = null;
 
